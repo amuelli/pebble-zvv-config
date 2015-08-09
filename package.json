@@ -1,0 +1,27 @@
+{
+  "name": "pebble-zvv-config",
+  "version": "1.0.0",
+  "description": "Configuration page for pebble-zvv app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.0.0",
+    "request": "^2.60.0"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amuelli/pebble-zvv-config"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Alex Mülli",
+  "license": "MIT"
+}

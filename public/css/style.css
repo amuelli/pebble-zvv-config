@@ -1,0 +1,23 @@
+.item-autocomplete{
+  overflow: visible;
+}
+.autocomplete {
+  max-width: none;
+}
+.results {
+  width:100%;
+  min-height:600px;
+}
+.item-input {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  padding:10px;
+  font-size:16px;
+  font-family:"Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  border:1px solid #ddd;
+  width:100%;
+}

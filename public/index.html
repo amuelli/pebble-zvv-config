@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Autocomplete</title>
+  <link rel='stylesheet' type='text/css' href='bower_components/pebble-slate/dist/css/slate.min.css'>
+  <link rel="stylesheet" href="bower_components/tiny-autocomplete/css/tiny-autocomplete.css" />
+  <link rel='stylesheet' type='text/css' href='/css/style.css'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+<body>
+  <div class="item-container">
+    <h1>Pebble ZVV</h1>
+  </div>
+  <div class="item-container">
+    <div class="item-container-header">Appearance</div>
+    <div class="item-container-content">
+      <label class="item">
+        Dark Mode
+        <input id="darkModeCheckBox" type="checkbox" class="item-toggle" name="toggle-dark">
+      </label>
+    </div>
+  </div>
+  <div class="item-container">
+    <div class="item-container-header">Favourite Stations</div>
+    <div class="item-container-content">
+      <div class="item-dynamic-autocomplete-list">
+        <label class="item">Zurich, Morgental</label>
+      </div>
+    </div>
+  </div>
+  <div class="item-container">
+    <div class="button-container">
+      <input id="submitButton" type="button" class="item-button" value="SAVE">
+    </div>
+  </div>
+  <div class="results">
+
+  <script src="bower_components/zepto/zepto.js"></script>
+  <script src="bower_components/tiny-autocomplete/src/tiny-autocomplete.js"></script>
+  <script src='js/main.js'></script>
+  <script src='bower_components/pebble-slate/dist/js/slate.min.js'></script>
+</body>
+</html>
