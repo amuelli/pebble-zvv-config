@@ -1,3 +1,7 @@
+  var options = {
+    darkMode : false,
+    stations : []
+  };
 (function() {
   loadOptions();
   submitHandler();
@@ -31,19 +35,24 @@ function getQueryParam(variable, defaultValue) {
 }
 
 function loadOptions() {
-  console.log('load options' + JSON.stringify(localStorage));
+  console.log('localStorage: ' + JSON.stringify(localStorage));
+  if(localStorage.options) {
+    options = JSON.parse(localStorage.options);
+  }
   var $darkModeCheckBox = $('#darkModeCheckBox');
-  $darkModeCheckBox[0].checked = localStorage.darkMode === 'true';
+  $darkModeCheckBox[0].checked = options.darkMode;
+
+  var $stationsList = $('#stationsList');
+  options.stations.forEach(function(station) {
+    $stationsList.append('<label class="item">' + station.name + '</label>');
+  });
 }
 
 function getAndStoreConfigData() {
   var $darkModeCheckBox = $('#darkModeCheckBox');
+  options.darkMode = $darkModeCheckBox[0].checked;
 
-  var options = {
-    darkMode : $darkModeCheckBox[0].checked
-  };
-
-  localStorage.darkMode = options.darkMode;
+  localStorage.options = JSON.stringify(options);
 
   console.log('Got options: ' + JSON.stringify(options));
   return options;
@@ -61,6 +70,9 @@ function getAndStoreConfigData() {
 
           $deleteButton.click(function() {
             $(this).parent().remove();
+            //delete station in options
+            var index = $(this).parent().index();
+            options.stations.splice(index, 1);
           });
 
           $(this).append($deleteButton);
@@ -74,7 +86,7 @@ function getAndStoreConfigData() {
           $(this).hide();
           var $inbox = $('<div class="item item-autocomplete">'
                         + '<div class="item-input-wrapper">'
-                          + '<input class="item-input" id="autocomplete-0" type="text" name="autocomplete-0" />'
+                          + '<input class="item-input" id="autocomplete-0" type="text" name="autocomplete-0" placeholder="Search for Station"/>'
                         + '</div>'
                       + '</div>');
 
@@ -86,7 +98,7 @@ function getAndStoreConfigData() {
             scrollOnFocus: false,
             itemTemplate:'<li class="autocomplete-item">{{id}}: {{name}}</li>',
             onSelect: function(el, val) {
-              stopEditing(val.name, $inbox);
+              addStation(val, $inbox);
               window.scrollTo(0, 0);
             }
           });
@@ -98,17 +110,20 @@ function getAndStoreConfigData() {
           }, 0);
           $input.focus();
 
-          function stopEditing(input, inbox) {
-            $addButton.show();
-            inbox.text(input);
+          function addStation(station, inbox) {
+            inbox.text(station.name);
+            options.stations.push(station);
 
             var deletebutton = $('<div class="delete-item"></div>');
-
             deletebutton.click(function(){
               $(this).parent().remove();
+              //delete station in options again
+              var index = $(this).parent().index();
+              options.stations.splice(index, 1);
             });
-
             inbox.append(deletebutton);
+
+            $addButton.show();
           }
         });
       });
