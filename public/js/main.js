@@ -96,7 +96,7 @@ function getAndStoreConfigData() {
             maxItems: 7,
             showNoResults: true,
             scrollOnFocus: false,
-            itemTemplate:'<li class="autocomplete-item">{{id}}: {{name}}</li>',
+            itemTemplate:'<li class="autocomplete-item">{{name}}</li>',
             onSelect: function(el, val) {
               addStation(val, $inbox);
               window.scrollTo(0, 0);
